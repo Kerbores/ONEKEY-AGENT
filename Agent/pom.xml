@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>club.zhcs</groupId>
+	<artifactId>agent</artifactId>
+	<version>1.0</version>
+	<name>Agent</name>
+	<description>基于 nutz-web 和 sigar 的运维 agent</description>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.nutz</groupId>
+			<artifactId>nutz-web</artifactId>
+			<version>1.r.58-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.nutz</groupId>
+			<artifactId>nutz-plugins-sigar</artifactId>
+			<version>1.r.58</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.26</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.39</version>
+		</dependency>
+	</dependencies>
+</project>
