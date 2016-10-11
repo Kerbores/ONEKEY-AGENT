@@ -27,7 +27,7 @@
 			</includes>
 		</fileSet>
 
-		<!-- 把项目的配置文件，打包进zip文件的src\main\webapp目录 -->
+		<!-- 把项目的web文件，打包进zip文件的src\main\webapp目录 -->
 		<fileSet>
 			<directory>src\main\webapp</directory>
 			<outputDirectory>src\main\webapp</outputDirectory>
