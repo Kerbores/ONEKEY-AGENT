@@ -18,7 +18,7 @@
 	<fileSets>
 		<!-- 把项目相关的说明文件，打包进zip文件的根目录 -->
 		<fileSet>
-			<directory>${project.basedir}</directory>
+			<directory>/</directory>
 			<outputDirectory>/</outputDirectory>
 			<includes>
 				<include>README*</include>
@@ -27,18 +27,15 @@
 			</includes>
 		</fileSet>
 
-		<!-- 把项目的配置文件，打包进zip文件的config目录 -->
+		<!-- 把项目的配置文件，打包进zip文件的src\main\webapp目录 -->
 		<fileSet>
-			<directory>${project.basedir}\src\main\webapp</directory>
+			<directory>src\main\webapp</directory>
 			<outputDirectory>src\main\webapp</outputDirectory>
-			<includes>
-				<include>*.*</include>
-			</includes>
 		</fileSet>
 
 		<!-- 把项目的脚本文件目录（ src/main/scripts ）中的启动脚本文件，打包进zip文件的跟目录 -->
 		<fileSet>
-			<directory>${project.build.scriptSourceDirectory}</directory>
+			<directory>src\main\script</directory>
 			<outputDirectory></outputDirectory>
 			<includes>
 				<include>*.*</include>
@@ -49,7 +46,7 @@
 		<!-- 把项目自己编译出来的jar文件，打包进zip文件的根目录 -->
 		<fileSet>
 			<directory>${project.build.directory}</directory>
-			<outputDirectory></outputDirectory>
+			<outputDirectory>lib</outputDirectory>
 			<includes>
 				<include>*.jar</include>
 			</includes>
