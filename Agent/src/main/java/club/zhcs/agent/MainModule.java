@@ -2,6 +2,8 @@ package club.zhcs.agent;
 
 import org.beetl.ext.nutz.BeetlViewMaker;
 import org.nutz.integration.shiro.ShiroSessionProvider;
+import org.nutz.ioc.loader.annotation.Inject;
+import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.By;
 import org.nutz.mvc.annotation.ChainBy;
 import org.nutz.mvc.annotation.Fail;
@@ -21,7 +23,9 @@ import org.nutz.plugins.apidoc.annotation.ApiMatchMode;
 
 import club.zhcs.agent.Agent.SessionKeys;
 import club.zhcs.agent.chain.ThunderChainMaker;
+import club.zhcs.agent.tasks.APMTask;
 import club.zhcs.titans.nutz.module.base.AbstractBaseModule;
+import club.zhcs.titans.utils.db.Result;
 
 @Ok("json")
 @Fail("http:500")
@@ -35,5 +39,13 @@ import club.zhcs.titans.nutz.module.base.AbstractBaseModule;
 @Api(name = "Thunder nop api", description = "nop开放平台接口示例", match = ApiMatchMode.NONE)
 @IocBy(type = ComboIocProvider.class, args = { "*anno", "club.zhcs", "*tx", "*js", "ioc", "*async", "*quartz", "quartz", "*sigar", "sigar" })
 public class MainModule extends AbstractBaseModule {
-
+	
+	@Inject
+	APMTask apmTask;
+	
+	@At
+	@Filters
+	public Result dashboard() {
+		return apmTask.data();
+	}
 }

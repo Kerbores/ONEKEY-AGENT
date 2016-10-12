@@ -64,6 +64,16 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>sigar</servlet-name>
+		<servlet-class>club.zhcs.titans.gather.servlet.SigarServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>sigar</servlet-name>
+		<url-pattern>/sigar</url-pattern>
+	</servlet-mapping>
+	
 	<listener>
 		<listener-class>org.nutz.mvc.NutSessionListener</listener-class>
 	</listener>
