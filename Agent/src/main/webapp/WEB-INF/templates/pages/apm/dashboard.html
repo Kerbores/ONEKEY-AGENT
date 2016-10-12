@@ -82,7 +82,7 @@ layout("/layout/default.html",{"menu":["apm","apm"],"breadcrumbs":[{"name":"告�
 								<td class="">CPU</td>
 								<td><i class="red" id="cpu">${obj.data.cpuUsage!}%</i></td>
 								<td><input type="text" id="cpuAlarmPercent" class="input-sm spinner" value="${obj.data.config['cpu.alarm.percent']}" /></td>
-								<td><select class="bs-select form-control" multiple data-style="btn-primary">
+								<td><select class="bs-select form-control" multiple data-style="btn-info" id="cpuAlarmTypes">
 										<option value="EMAIL"${alarmType(obj.data.config['cpu.alarm.types'],'EMAIL') ?  'selected' : ''}>邮件</option>
 										<option value="SMS"${alarmType(obj.data.config['cpu.alarm.types'],'SMS') ?  'selected' : ''}>短信</option>
 										<option value="WECHAT"${alarmType(obj.data.config['cpu.alarm.types'],'WECHAT') ?  'selected' : ''}>微信</option>
@@ -98,7 +98,7 @@ layout("/layout/default.html",{"menu":["apm","apm"],"breadcrumbs":[{"name":"告�
 								<td class="">JVM</td>
 								<td><i class="red" id="jvm">${obj.data.jvmUasge!}%</i></td>
 								<td><input type="text" id="jvmAlarmPercent" class="input-sm spinner" value="${obj.data.config['jvm.alarm.percent']}" /></td>
-								<td><select class="bs-select form-control" multiple data-style="btn-primary">
+								<td><select class="bs-select form-control" multiple data-style="btn-primary" id="jvmAlarmTypes">
 										<option value="EMAIL"${alarmType(obj.data.config['jvm.alarm.types'],'EMAIL') ?  'selected' : ''}>邮件</option>
 										<option value="SMS"${alarmType(obj.data.config['jvm.alarm.types'],'SMS') ?  'selected' : ''}>短信</option>
 										<option value="WECHAT"${alarmType(obj.data.config['jvm.alarm.types'],'WECHAT') ?  'selected' : ''}>微信</option>
@@ -114,7 +114,7 @@ layout("/layout/default.html",{"menu":["apm","apm"],"breadcrumbs":[{"name":"告�
 								<td class="">MEM</td>
 								<td><i class="red" id="ram">${obj.data.ramUasge!}%</i></td>
 								<td><input type="text" id="ramAlarmPercent" class="input-sm spinner" value="${obj.data.config['ram.alarm.percent']}" /></td>
-								<td><select class="bs-select form-control" multiple data-style="btn-primary">
+								<td><select class="bs-select form-control" multiple data-style="btn-primary" id="ramAlarmTypes">
 										<option value="EMAIL"${alarmType(obj.data.config['ram.alarm.types'],'EMAIL') ?  'selected' : ''}>邮件</option>
 										<option value="SMS"${alarmType(obj.data.config['ram.alarm.types'],'SMS') ?  'selected' : ''}>短信</option>
 										<option value="WECHAT"${alarmType(obj.data.config['ram.alarm.types'],'WECHAT') ?  'selected' : ''}>微信</option>
@@ -130,45 +130,45 @@ layout("/layout/default.html",{"menu":["apm","apm"],"breadcrumbs":[{"name":"告�
 								<td class="">Swap</td>
 								<td><i class="red" id="swap">${obj.data.swapUasge!}%</i></td>
 								<td><input type="text" id="swapAlarmPercent" class="input-sm spinner" value="${obj.data.config['swap.alarm.percent']}" /></td>
-								<td><select class="bs-select form-control" multiple data-style="btn-primary">
+								<td><select class="bs-select form-control" multiple data-style="btn-primary" id="swapAlarmTypes">
 										<option value="EMAIL"${alarmType(obj.data.config['swap.alarm.types'],'EMAIL') ?  'selected' : ''}>邮件</option>
 										<option value="SMS"${alarmType(obj.data.config['swap.alarm.types'],'SMS') ?  'selected' : ''}>短信</option>
 										<option value="WECHAT"${alarmType(obj.data.config['swap.alarm.types'],'WECHAT') ?  'selected' : ''}>微信</option>
 								</select></td>
 								<td>
-									<button class="btn btn-sm btn-primary" onclick="setAlarm('jvm')">
+									<button class="btn btn-sm btn-primary" onclick="setAlarm('swap')">
 										<i class="ace-icon fa fa-cogs align-top"></i> 设置
 									</button>
 								</td>
 							</tr>
 
 							<tr>
-								<td class="">CPU</td>
-								<td><i class="red" id="cpu">${obj.data.cpuUsage!}%</i></td>
-								<td><input type="text" id="cpuAlarmPercent" class="input-sm spinner" value="${obj.data.config['cpu.alarm.percent']}" /></td>
-								<td><select class="bs-select form-control" multiple data-style="btn-primary">
-										<option value="EMAIL"${alarmType(obj.data.config['cpu.alarm.types'],'EMAIL') ?  'selected' : ''}>邮件</option>
-										<option value="SMS"${alarmType(obj.data.config['cpu.alarm.types'],'SMS') ?  'selected' : ''}>短信</option>
-										<option value="WECHAT"${alarmType(obj.data.config['cpu.alarm.types'],'WECHAT') ?  'selected' : ''}>微信</option>
+								<td class="">DISK</td>
+								<td><i class="red" id="disk">${obj.data.diskUsage!} %</i></td>
+								<td><input type="text" id="diskAlarmPercent" class="input-sm spinner" value="${obj.data.config['disk.alarm.percent']}" /></td>
+								<td><select class="bs-select form-control" multiple data-style="btn-primary" id="diskAlarmTypes">
+										<option value="EMAIL"${alarmType(obj.data.config['disk.alarm.types'],'EMAIL') ?  'selected' : ''}>邮件</option>
+										<option value="SMS"${alarmType(obj.data.config['disk.alarm.types'],'SMS') ?  'selected' : ''}>短信</option>
+										<option value="WECHAT"${alarmType(obj.data.config['disk.alarm.types'],'WECHAT') ?  'selected' : ''}>微信</option>
 								</select></td>
 								<td>
-									<button class="btn btn-sm btn-primary" onclick="setAlarm('cpu')">
+									<button class="btn btn-sm btn-primary" onclick="setAlarm('disk')">
 										<i class="ace-icon fa fa-cogs align-top"></i> 设置
 									</button>
 								</td>
 							</tr>
 
 							<tr>
-								<td class="">JVM</td>
-								<td><i class="red" id="jvm">${obj.data.jvmUasge!}%</i></td>
-								<td><input type="text" id="jvmAlarmPercent" class="input-sm spinner" value="${obj.data.config['jvm.alarm.percent']}" /></td>
-								<td><select class="bs-select form-control" multiple data-style="btn-primary">
-										<option value="EMAIL"${alarmType(obj.data.config['jvm.alarm.types'],'EMAIL') ?  'selected' : ''}>邮件</option>
-										<option value="SMS"${alarmType(obj.data.config['jvm.alarm.types'],'SMS') ?  'selected' : ''}>短信</option>
-										<option value="WECHAT"${alarmType(obj.data.config['jvm.alarm.types'],'WECHAT') ?  'selected' : ''}>微信</option>
+								<td class="">NetInterface</td>
+								<td><i class="red" id="network">${obj.data.rxbps!} & ${obj.data.txbps!} b/s</i></td>
+								<td><input type="text" id="networkAlarmPercent" class="input-sm spinner" value="${obj.data.config['network.alarm.percent']}" /></td>
+								<td><select class="bs-select form-control" multiple data-style="btn-primary" id="networkAlarmTypes">
+										<option value="EMAIL"${alarmType(obj.data.config['network.alarm.types'],'EMAIL') ?  'selected' : ''}>邮件</option>
+										<option value="SMS"${alarmType(obj.data.config['network.alarm.types'],'SMS') ?  'selected' : ''}>短信</option>
+										<option value="WECHAT"${alarmType(obj.data.config['network.alarm.types'],'WECHAT') ?  'selected' : ''}>微信</option>
 								</select></td>
 								<td>
-									<button class="btn btn-sm btn-primary" onclick="setAlarm('jvm')">
+									<button class="btn btn-sm btn-primary" onclick="setAlarm('network')">
 										<i class="ace-icon fa fa-cogs align-top"></i> 设置
 									</button>
 								</td>
@@ -271,15 +271,15 @@ layout("/layout/default.html",{"menu":["apm","apm"],"breadcrumbs":[{"name":"告�
 	function setAlarm(type) {
 		var percent = $('#' + type + 'AlarmPercent').val();
 		var types = $('#' + type + 'AlarmTypes').val();
-		$.post(getRootPath() + '/apm/setting', {
+		$.post(Common.getRootPath() + '/apm/setting', {
 			type : type,
 			percent : percent,
 			types : types.join()
 		}, function(result) {
 			if (result.operationState == 'SUCCESS') {
-				showMessage('设置成功!');
+				Common.showMessage('设置成功!');
 			} else {
-				showMessage(result.data.reason);
+				Common.showMessage(result.data.reason);
 			}
 		}, 'json')
 	}
@@ -323,15 +323,6 @@ layout("/layout/default.html",{"menu":["apm","apm"],"breadcrumbs":[{"name":"告�
 					$('#swap').text((result.data.swapUasge.toFixed(2) - 0) + '%');
 					$('#network').text(
 						((result.data.network.rxbps / 1024 / 1024 / 8).toFixed(2) - 0) + ' & ' + ((result.data.network.txbps / 1024 / 1024 / 8).toFixed(2) - 0) + ' M/s');
-
-					keepLength(option.series[0].data, 25);
-					keepLength(option.series[1].data, 25);
-					keepLength(option.series[2].data, 25);
-					keepLength(option.series[3].data, 25);
-					keepLength(option.series[4].data, 25);
-					keepLength(option.xAxis[0].data, 25);
-					line.setOption(option, true);
-
 				} else {
 					location.reload(true);
 				}
