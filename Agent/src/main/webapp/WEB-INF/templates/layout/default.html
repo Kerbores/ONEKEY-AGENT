@@ -47,6 +47,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END THEME LAYOUT STYLES -->
 <link rel="shortcut icon" href="${base}/assets/metronic/pages/img/login/logo.ico" />
 <script src="${base}/assets/metronic/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="${base}/assets/layer/layer.js" type="text/javascript"></script>
 <script src="${base}/assets/n-csm/js/common.js" type="text/javascript"></script>
 <script src="${base}/assets/n-csm/js/validation.js" type="text/javascript"></script>
 </head>
@@ -300,18 +301,18 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 						</form> <!-- END RESPONSIVE QUICK SEARCH FORM -->
 					</li>
-					<li class="nav-item start "><a href="javascript:;" class="nav-link nav-toggle"> <i class="fa fa-tachometer"></i> <span class="title">APM控制台</span> <span
+					<li class="nav-item start ${ menu[0] =='apm' ?'active open':''}"><a href="javascript:;" class="nav-link nav-toggle"> <i class="fa fa-tachometer"></i> <span class="title">APM控制台</span> <span
 							class="arrow open"></span>
 					</a>
 						<ul class="sub-menu">
-							<li class="nav-item start "><a href="index.html" class="nav-link "> <i class="fa fa-server"></i> <span class="title">服务器监控</span>
+							<li class="nav-item start ${ menu[1] =='apm' ?'active':''}"><a href="${base}/apm/dashboard" class="nav-link "> <i class="fa fa-server"></i> <span class="title">服务器监控</span>
 							</a></li>
-							<li class="nav-item  start"><a href="dashboard_2.html" class="nav-link "> <i class="fa fa-database"></i> <span class="title">数据库监控</span> <span
+							<li class="nav-item  start ${ menu[1] =='db' ?'active':''}"><a href="${base}/db/dashboard" class="nav-link "> <i class="fa fa-database"></i> <span class="title">数据库监控</span> <span
 									class="badge badge-success">1</span>
 							</a></li>
-							<li class="nav-item  start"><a href="dashboard_3.html" class="nav-link "> <i class="fa fa-tag"></i> <span class="title">登录日志</span> <span class="badge badge-danger">5</span>
+							<li class="nav-item  start ${ menu[1] =='login' ?'active':''}"><a href="${base}/login/list" class="nav-link "> <i class="fa fa-tag"></i> <span class="title">登录日志</span> <span class="badge badge-danger">5</span>
 							</a></li>
-							<li class="nav-item  start"><a href="dashboard_3.html" class="nav-link "> <i class="fa fa-history"></i> <span class="title">业务追踪</span> <span
+							<li class="nav-item  start ${ menu[1] =='ops' ?'active':''}"><a href="${base}/operation/list" class="nav-link "> <i class="fa fa-history"></i> <span class="title">业务追踪</span> <span
 									class="badge badge-danger">5</span>
 							</a></li>
 						</ul></li>

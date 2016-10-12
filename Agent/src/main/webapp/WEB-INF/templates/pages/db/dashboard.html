@@ -1,5 +1,5 @@
 <!--# 
-layout("/layout/default.html",{"menu":["db","db"],"breadcrumbs":[{"name":"数据库监控"}]}){ 
+layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数据库监控"}]}){ 
  #-->
 <div class="tabbable">
 	<ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
@@ -498,11 +498,10 @@ layout("/layout/default.html",{"menu":["db","db"],"breadcrumbs":[{"name":"数据
 
 	function loadDataSource() {
 		var index = layer.load(0, {shade: false});
-		$.post(getRootPath() + '/druid/datasource.json', {}, function(data) {
+		$.post(Common.getRootPath() + '/druid/datasource.json', {}, function(data) {
 			layer.close(index);
 			if (data.ResultCode == 1) {
 				var con = data.Content[0];
-				console.log(con);
 				for (key in con) {
 					if ($('#dataSource_' + key).length) {
 						$('#dataSource_' + key).text(con[key]);
@@ -516,7 +515,7 @@ layout("/layout/default.html",{"menu":["db","db"],"breadcrumbs":[{"name":"数据
 	}
 	function loadSql() {
 		var index = layer.load(0, {shade: false});
-		$.post(getRootPath() + '/druid/sql.json', {}, function(data) {
+		$.post(Common.getRootPath() + '/druid/sql.json', {}, function(data) {
 			layer.close(index);
 			if (data.ResultCode == 1) {
 				var sqlPanel = $('#sqlPanel').empty();
@@ -550,7 +549,7 @@ layout("/layout/default.html",{"menu":["db","db"],"breadcrumbs":[{"name":"数据
 	}
 	function loadApp() {
 		var index = layer.load(0, {shade: false});
-		$.post(getRootPath() + '/druid/webapp.json', {}, function(data) {
+		$.post(Common.getRootPath() + '/druid/webapp.json', {}, function(data) {
 			layer.close(index);
 			if (data.ResultCode == 1) {
 				var con = data.Content[0];
@@ -572,7 +571,7 @@ layout("/layout/default.html",{"menu":["db","db"],"breadcrumbs":[{"name":"数据
 	}
 	function loadURI() {
 		var index = layer.load(0, {shade: false});
-		$.post(getRootPath() + '/druid/weburi.json', {}, function(data) {
+		$.post(Common.getRootPath() + '/druid/weburi.json', {}, function(data) {
 			layer.close(index);
 			if (data.ResultCode == 1) {
 				var URIPanle = $('#URIPanle').empty();
@@ -595,7 +594,7 @@ layout("/layout/default.html",{"menu":["db","db"],"breadcrumbs":[{"name":"数据
 	}
 	function loadSession() {
 		var index = layer.load(0, {shade: false});
-		$.post(getRootPath() + '/druid/websession.json', {}, function(data) {
+		$.post(Common.getRootPath() + '/druid/websession.json', {}, function(data) {
 			layer.close(index);
 			if (data.ResultCode == 1) {
 				var sessionPanel = $('#sessionPanel').empty();
@@ -618,7 +617,7 @@ layout("/layout/default.html",{"menu":["db","db"],"breadcrumbs":[{"name":"数据
 	}
 	function loadIndex() {
 		var index = layer.load(0, {shade: false});
-		$.post(getRootPath() + '/druid/basic.json', {}, function(data) {
+		$.post(Common.getRootPath() + '/druid/basic.json', {}, function(data) {
 			layer.close(index);
 			if (data.ResultCode == 1) {
 				$('#DruidVersion').text(data.Content.Version);

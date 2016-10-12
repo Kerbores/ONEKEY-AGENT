@@ -1,4 +1,4 @@
-package club.zhcs.agent.modules.admin;
+package club.zhcs.agent.modules.admin.acl;
 
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.mvc.annotation.At;
