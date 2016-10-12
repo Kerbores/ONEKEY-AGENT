@@ -21,15 +21,10 @@ import club.zhcs.titans.utils.db.Pager;
 import club.zhcs.titans.utils.db.Result;
 
 /**
- * @author Kerbores(kerbores@gmail.com)
+ * 
+ * @author kerbores
  *
- * @project app
- *
- * @file APMModule.java
- *
- * @description 性能告警相关
- *
- * @time 2016年3月15日 下午4:55:00
+ * @email kerbores@gmail.com
  *
  */
 @At("apm")
@@ -64,7 +59,7 @@ public class APMModule extends AbstractBaseModule {
 	@Ok("beetl:pages/apm/dashboard.html")
 	@RequiresRoles("admin")
 	public Result dashboard() throws SigarException {
-		return Result.success().addData(Gathers.all()).addData("config", config);
+		return Result.success().addData(Gathers.all()).addData("config", config).setTitle("本机状态");
 	}
 
 	@At("/detail/*")
