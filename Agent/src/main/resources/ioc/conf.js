@@ -8,7 +8,7 @@ var ioc = {
 		fields : {
 			ignoreResourceNotFound : true,
 			utf8 : false,
-			paths : 'conf'
+			paths : ['conf','config/conf']
 		}
 	}
 };

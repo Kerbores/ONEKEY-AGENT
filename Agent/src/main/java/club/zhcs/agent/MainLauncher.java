@@ -13,10 +13,9 @@ public class MainLauncher {
 		} else {
 			System.setProperty("java.library.path", path + ":src/main/webapp/WEB-INF/lib");
 		}
-		if (Files.findFile("config/web.properties")!=null) {
-			System.err.println(742425);
+		if (Files.findFile("config/web.properties") != null) {
 			WebLauncher.start("config/web.properties");
-		}else {
+		} else {
 			WebLauncher.start(args);
 		}
 	}

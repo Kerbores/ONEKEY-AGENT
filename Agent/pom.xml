@@ -217,6 +217,16 @@
 			<artifactId>nutz</artifactId>
 			<version>1.r.58</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-email</artifactId>
+			<version>1.4</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<nutz.plugins.version>1.r.58</nutz.plugins.version>
