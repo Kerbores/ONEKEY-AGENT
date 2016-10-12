@@ -321,9 +321,27 @@ License: You must have a valid license purchased only from themeforest(the above
 						</h3>
 					</li>
 
-					<li class="nav-item ${ menu[0] =='main' ?'active open':''}"><a href="${base!}/system/main" class="nav-link nav-toggle"> <i class="fa fa-sticky-note"></i> <span class="title">项目说明</span>
+					<li class="nav-item ${ menu[0] =='main' ?'active open':''}"><a href="${base!}/system/main" class="nav-link nav-toggle"> <i class="fa fa-sticky-note"></i> <span
+							class="title">项目说明</span>
 					</a></li>
 
+					<li class="nav-item  ${ menu[0] =='acl' ?'active open':''}"><a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-users"></i> <span class="title">访问控制</span>
+							<span class="arrow"></span>
+					</a>
+						<ul class="sub-menu">
+							<!--# if(hasPermission('user.list')){ #-->
+							<li class="nav-item  ${ menu[1] =='user_admin' ?'active':''}"><a href="${base!}/user/list" class="nav-link "> <i class="fa fa-user"></i> <span class="title">用户管理</span>
+							</a></li>
+							<!--# } #-->
+							<!--# if(hasPermission('role.list')){ #-->
+							<li class="nav-item  ${ menu[1] =='role_admin' ?'active':''}"><a href="${base!}/role/list" class="nav-link "><i class="fa fa-lock"></i>  <span class="title">角色管理 </span>
+							</a></li>
+							<!--# } #-->
+							<!--# if(hasPermission('permission.list')){ #-->
+							<li class="nav-item  ${ menu[1] =='permission_admin' ?'active':''}"><a href="${base!}/permission/list" class="nav-link "><i class="fa fa-eye"></i>  <span class="title">权限管理</span>
+							</a></li>
+							<!--# } #-->
+						</ul></li>
 
 					<li class="nav-item  "><a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-diamond"></i> <span class="title">UI Features</span> <span class="arrow"></span>
 					</a>
