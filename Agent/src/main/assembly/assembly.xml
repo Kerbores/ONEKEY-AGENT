@@ -32,6 +32,19 @@
 			<directory>src\main\webapp</directory>
 			<outputDirectory>src\main\webapp</outputDirectory>
 		</fileSet>
+		
+		<fileSet>
+			<directory>src\main\resources</directory>
+			<outputDirectory>config</outputDirectory>
+			<includes>
+				<include>log4j.properties</include>
+				<include>web.properties</include>
+				<include>sigar/sigar.properties</include>
+				<include>conf/mail.properties</include>
+				<include>customer/web-ext.properties</include>
+				<include>datasource/datasource.properties</include>
+			</includes>
+		</fileSet>
 
 		<!-- 把项目的脚本文件目录（ src/main/scripts ）中的启动脚本文件，打包进zip文件的跟目录 -->
 		<fileSet>

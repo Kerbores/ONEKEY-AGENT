@@ -1,5 +1,6 @@
 package club.zhcs.agent;
 
+import org.nutz.lang.Files;
 import org.nutz.lang.Lang;
 import org.nutz.web.WebLauncher;
 
@@ -12,6 +13,11 @@ public class MainLauncher {
 		} else {
 			System.setProperty("java.library.path", path + ":src/main/webapp/WEB-INF/lib");
 		}
-		WebLauncher.start(args);
+		if (Files.findFile("config/web.properties")!=null) {
+			System.err.println(742425);
+			WebLauncher.start("config/web.properties");
+		}else {
+			WebLauncher.start(args);
+		}
 	}
 }
