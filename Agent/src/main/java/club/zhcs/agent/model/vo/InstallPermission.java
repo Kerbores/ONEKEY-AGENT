@@ -92,29 +92,6 @@ public enum InstallPermission {
 	 * ++++++++++++++++++++++配置管理++++++++++++++++++++++++++++++++
 	 */
 
-	/**
-	 * ++++++++++++++++++++++机构管理++++++++++++++++++++++++++++++++
-	 */
-	STRUTS_LIST("struts.list", "机构管理"),
-	/**
-	 * 
-	 */
-	STRUTS_ADD("struts.add", "机构添加"),
-	/**
-	 * 
-	 */
-	STRUTS_EDIT("struts.edit", "机构编辑"),
-	/**
-	 * 
-	 */
-	STRUTS_DETAIL("struts.detail", "机构详情"),
-	/**
-	 * 
-	 */
-	STRUTS_DELETE("struts.delete", "机构删除"),
-	/**
-	 * ++++++++++++++++++++++机构管理++++++++++++++++++++++++++++++++
-	 */
 
 	;
 	private String name;
