@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>club.zhcs</groupId>
 	<artifactId>agent</artifactId>
@@ -65,18 +66,31 @@
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz-web</artifactId>
 			<version>1.r.57</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jetty-all-server</artifactId>
+					<groupId>org.eclipse.jetty.aggregate</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>javax.servlet.jsp</artifactId>
+					<groupId>org.eclipse.jetty.orbit</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty.aggregate/jetty-all -->
+		<dependency>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-all</artifactId>
+			<version>9.2.19.v20160908</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz-integration-shiro</artifactId>
 			<version>${nutz.plugins.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.nutz</groupId>
-					<artifactId>nutz</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.nutz</groupId>
@@ -133,7 +147,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache -->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
@@ -147,8 +161,8 @@
 			<artifactId>shiro-ehcache</artifactId>
 			<version>1.3.2</version>
 		</dependency>
-		
-		
+
+
 		<!-- log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -156,7 +170,7 @@
 			<version>1.2.17</version>
 		</dependency>
 		<!-- log4j -->
-		
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
@@ -181,6 +195,12 @@
 			<groupId>org.nutz</groupId>
 			<artifactId>nutz</artifactId>
 			<version>1.r.58</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<properties>
