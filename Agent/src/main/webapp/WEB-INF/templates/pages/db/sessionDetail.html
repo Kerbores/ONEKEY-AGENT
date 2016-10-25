@@ -97,14 +97,14 @@ layout("/layout/blank.html",{}){
 		var index = layer.load(0, {
 			shade : false
 		});
-		$.post(getRootPath() + '/druid/websession-' + $('#sessionId').val() + '.json', {}, function(data) {
+		$.post(Common.getRootPath() + '/druid/websession-' + $('#sessionId').val() + '.json', {}, function(data) {
 			layer.close(index);
 			if (data.ResultCode == 1) {
 				for (key in data.Content) {
 					$('#' + key).text(data.Content[key]);
 				}
 			} else {
-				showMessage("调用druid api失败!")
+				Common.showMessage("调用druid api失败!")
 			}
 		}, 'json');
 	})
