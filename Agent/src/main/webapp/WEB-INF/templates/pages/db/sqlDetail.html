@@ -57,7 +57,7 @@ layout("/layout/blank.html",{}){
 		var index = layer.load(0, {
 			shade : false
 		});
-		$.post(getRootPath() + '/druid/sql-' + $('#sqlId').val() + '.json', {}, function(data) {
+		$.post(Common.getRootPath() + '/druid/sql-' + $('#sqlId').val() + '.json', {}, function(data) {
 			layer.close(index);
 			if (data.ResultCode == 1) {
 				$('#formattedSql').text(data.Content.formattedSql);
@@ -70,7 +70,7 @@ layout("/layout/blank.html",{}){
 				$('#LastErrorTime').text(data.Content.LastErrorTime);
 				$('#LastErrorStackTrace').text(data.Content.LastErrorStackTrace);
 			} else {
-				showMessage("调用druid api失败!")
+				Common.showMessage("调用druid api失败!")
 			}
 		}, 'json');
 	})

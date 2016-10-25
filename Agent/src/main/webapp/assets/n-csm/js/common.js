@@ -11,6 +11,16 @@ var Common = {
 	validationFail : function(msg, dom) {
 		layer.tips(msg, dom);
 	},
+	openUrl:function(url, title, width, height, closeBtn) {
+		layer.open({
+			type : 2,
+			shadeClose : true,
+			title : title,
+			closeBtn : closeBtn,
+			area : [ width + 'px', height + 'px' ], // 宽高
+			content : contextPath + url
+		});
+	},
 	showMessage : function(msg, title) {
 		if (layer) {
 			layer.msg(msg, {

@@ -493,7 +493,7 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 	})
 
 	function openConnectionPool() {
-		openUrl("/db/connectionPool?id=" + $('#dataSourceId').val(), "连接池信息", 800, 800, false);
+		Common.openUrl("/db/connectionPool?id=" + $('#dataSourceId').val(), "连接池信息", 800, 800, false);
 	}
 
 	function loadDataSource() {
@@ -539,13 +539,13 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 	}
 
 	function openSqlDetail(id) {
-		openUrl("/db/sqlDetail?sqlId=" + id, "sql监控详情", 800, 800, false);
+		Common.openUrl("/db/sqlDetail?sqlId=" + id, "sql监控详情", 800, 800, false);
 	}
 	function openSessionDetail(sessionId) {
-		openUrl("/db/sessionDetail?sessionId=" + sessionId, "会话监控详情", 800, 800, false);
+		Common.openUrl("/db/sessionDetail?sessionId=" + sessionId, "会话监控详情", 800, 800, false);
 	}
 	function openURIDetail(uri) {
-		openUrl("/db/uriDetail?uri=" + uri, "URI监控详情", 800, 800, false);
+		Common.openUrl("/db/uriDetail?uri=" + uri, "URI监控详情", 800, 800, false);
 	}
 	function loadApp() {
 		var index = layer.load(0, {shade: false});

@@ -49,10 +49,102 @@ import club.zhcs.titans.utils.db.Result;
  *
  */
 @IocBean(name = "apmTask", fields = "dao", create = "init")
-@Scheduled(cron = "*/10 * * * * ? ")
+@Scheduled(cron = "*/30 * * * * ? ")
 public class APMTask implements Job {
 	private static Log LOG = Logs.getLog(APMTask.class);
 	private Dao dao;
+
+	/**
+	 * 
+	 * @author Kerbores
+	 * 
+	 *         sigar 收集的数据
+	 *
+	 */
+	public static class SigarData {
+		private Date gatherTime = Times.now();
+		private double apuUsage;
+		private double ramUsage;
+		private double jvmUsage;
+		private double swapUsage;
+		private double niUsage;
+		private double noUsage;
+		private double ioUsage;
+		private double diskUsage;
+
+		public Date getGatherTime() {
+			return gatherTime;
+		}
+
+		public double getIoUsage() {
+			return ioUsage;
+		}
+
+		public void setIoUsage(double ioUsage) {
+			this.ioUsage = ioUsage;
+		}
+
+		public void setGatherTime(Date gatherTime) {
+			this.gatherTime = gatherTime;
+		}
+
+		public double getApuUsage() {
+			return apuUsage;
+		}
+
+		public void setApuUsage(double apuUsage) {
+			this.apuUsage = apuUsage;
+		}
+
+		public double getRamUsage() {
+			return ramUsage;
+		}
+
+		public void setRamUsage(double ramUsage) {
+			this.ramUsage = ramUsage;
+		}
+
+		public double getJvmUsage() {
+			return jvmUsage;
+		}
+
+		public void setJvmUsage(double jvmUsage) {
+			this.jvmUsage = jvmUsage;
+		}
+
+		public double getSwapUsage() {
+			return swapUsage;
+		}
+
+		public void setSwapUsage(double swapUsage) {
+			this.swapUsage = swapUsage;
+		}
+
+		public double getNiUsage() {
+			return niUsage;
+		}
+
+		public void setNiUsage(double niUsage) {
+			this.niUsage = niUsage;
+		}
+
+		public double getNoUsage() {
+			return noUsage;
+		}
+
+		public void setNoUsage(double noUsage) {
+			this.noUsage = noUsage;
+		}
+
+		public double getDiskUsage() {
+			return diskUsage;
+		}
+
+		public void setDiskUsage(double diskUsage) {
+			this.diskUsage = diskUsage;
+		}
+
+	}
 
 	/**
 	 * 时间点
@@ -75,8 +167,9 @@ public class APMTask implements Job {
 
 	public Result data() {
 
-		return Result.success().addData("timePoints", timePoints).addData("cpuUsages", cpuUsages).addData("ramUsages", ramUsages).addData("jvmUsages", jvmUsages)
-				.addData("swapUsages", swapUsages).addData("niUsages", niUsages).addData("noUsages", noUsages);
+		return Result.success().addData("timePoints", timePoints).addData("cpuUsages", cpuUsages)
+				.addData("ramUsages", ramUsages).addData("jvmUsages", jvmUsages).addData("swapUsages", swapUsages)
+				.addData("niUsages", niUsages).addData("noUsages", noUsages);
 	}
 
 	/**
@@ -106,6 +199,8 @@ public class APMTask implements Job {
 
 	@Inject
 	EmailService emailService;
+	
+	Sigar sigar = new Sigar();
 
 	List<User> listeners = Lists.newArrayList();
 
@@ -149,7 +244,7 @@ public class APMTask implements Job {
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 
 		try {
-			Sigar sigar = new Sigar();
+			
 			MemoryGather memory = MemoryGather.gather(sigar);
 
 			// 内存
@@ -161,7 +256,8 @@ public class APMTask implements Job {
 				alarm(Type.MEM, "内存警告", "RAM", ramUsage, config.getInt("ram.alarm.percent"));
 			}
 			if (memory.getSwap().getTotal() != 0) {
-				if ((swapUsage = memory.getSwap().getUsed() * 100 / memory.getSwap().getTotal()) > config.getInt("swap.alarm.percent")) {
+				if ((swapUsage = memory.getSwap().getUsed() * 100 / memory.getSwap().getTotal()) > config
+						.getInt("swap.alarm.percent")) {
 					alarm(Type.MEM, "内存警告", "SWAP", swapUsage, config.getInt("swap.alarm.percent"));
 				}
 			}
@@ -178,8 +274,10 @@ public class APMTask implements Job {
 
 			List<DISKGather> disks = DISKGather.gather(sigar);
 			for (DISKGather disk : disks) {
-				if (disk.getStat() != null && disk.getStat().getUsePercent() * 100 > config.getInt("disk.alarm.percent")) {
-					alarm(Type.DISK, "磁盘警告", "DISK", disk.getStat().getUsePercent(), config.getInt("disk.alarm.percent"));
+				if (disk.getStat() != null
+						&& disk.getStat().getUsePercent() * 100 > config.getInt("disk.alarm.percent")) {
+					alarm(Type.DISK, "磁盘警告", "DISK", disk.getStat().getUsePercent(),
+							config.getInt("disk.alarm.percent"));
 				}
 			}
 
