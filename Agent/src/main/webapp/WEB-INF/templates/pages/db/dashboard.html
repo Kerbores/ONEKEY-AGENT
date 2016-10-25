@@ -74,9 +74,9 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 				</thead>
 				<tbody>
 					<tr>
-						<td class="td_lable"><span class="lang">连接池中连接信息</span></td>
-						<td><a onclick="openConnectionPool()">查看</a> <input type="hidden" id="dataSourceId" value=""></td>
-						<td></td>
+						<td class="td_lable col-md-2"><span class="lang">连接列表</span></td>
+						<td class="col-md-8"><a onclick="openConnectionPool()">查看</a> <input type="hidden" id="dataSourceId" value=""></td>
+						<td class="col-md-2"></td>
 					</tr>
 					<tr>
 						<td class="td_lable">* <span class="lang">用户名</span></td>
@@ -104,27 +104,27 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 						<td class="lang">filter的类名</td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">获取连接时检测</span></td>
+						<td class="td_lable">* <span class="lang">获取检测</span></td>
 						<td id="dataSource_TestOnBorrow"></td>
 						<td class="lang">是否在获得连接后检测其可用性</td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">空闲时检测</span></td>
+						<td class="td_lable">* <span class="lang">空闲检测</span></td>
 						<td id="dataSource_TestWhileIdle"></td>
 						<td class="lang">是否在连接空闲一段时间后检测其可用性</td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">连接放回连接池时检测</span></td>
+						<td class="td_lable">* <span class="lang">释放检测</span></td>
 						<td id="dataSource_TestOnReturn"></td>
 						<td class="lang">是否在连接放回连接池后检测其可用性</td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">初始化连接大小</span></td>
+						<td class="td_lable">* <span class="lang">初始化大小</span></td>
 						<td id="dataSource_InitialSize"></td>
 						<td class="lang">连接池建立时创建的初始化连接数</td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">最小空闲连接数</span></td>
+						<td class="td_lable">* <span class="lang">最小空闲数</span></td>
 						<td id="dataSource_MinIdle"></td>
 						<td class="lang">连接池中最小的活跃连接数</td>
 					</tr>
@@ -134,32 +134,32 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 						<td class="lang">连接池中最大的活跃连接数</td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">查询超时时间</span></td>
+						<td class="td_lable">* <span class="lang">查询超时</span></td>
 						<td id="dataSource_QueryTimeout"></td>
 						<td class="lang">查询超时时间</td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">事务查询超时时间</span></td>
+						<td class="td_lable">* <span class="lang">事务超时</span></td>
 						<td id="dataSource_TransactionQueryTimeout"></td>
 						<td class="lang">事务查询超时时间</td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">登录超时时间</span></td>
+						<td class="td_lable">* <span class="lang">登录超时</span></td>
 						<td id="dataSource_LoginTimeout"></td>
 						<td class="lang"></td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">连接有效性检查类名</span></td>
+						<td class="td_lable">* <span class="lang">连接检查类</span></td>
 						<td id="dataSource_ValidConnectionCheckerClassName"></td>
 						<td class="lang"></td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">ExceptionSorter类名</span></td>
+						<td class="td_lable">* <span class="lang">异常排序类</span></td>
 						<td id="dataSource_ExceptionSorterClassName"></td>
 						<td class="lang"></td>
 					</tr>
 					<tr>
-						<td class="td_lable">* <span class="lang">默认autocommit设置</span></td>
+						<td class="td_lable">* <span class="lang">自动提交</span></td>
 						<td id="dataSource_DefaultAutoCommit"></td>
 						<td class="lang"></td>
 					</tr>
@@ -209,7 +209,7 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 						<td class="lang">连接池中数目的峰值</td>
 					</tr>
 					<tr>
-						<td class="td_lable"><span class="lang">池中连接数峰值时间</span></td>
+						<td class="td_lable"><span class="lang">连接数峰值发生</span></td>
 						<td id="dataSource_PoolingPeakTime"></td>
 						<td class="lang">连接池数目峰值出现的时间</td>
 					</tr>
@@ -224,27 +224,27 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 						<td class="lang">连接池中活跃连接数峰值</td>
 					</tr>
 					<tr>
-						<td class="td_lable"><span class="lang">活跃连接数峰值时间</span></td>
+						<td class="td_lable"><span class="lang">活跃数峰值发生</span></td>
 						<td id="dataSource_ActivePeakTime"></td>
 						<td class="lang">活跃连接池峰值出现的时间</td>
 					</tr>
 					<tr>
-						<td class="td_lable"><span class="lang">逻辑连接打开次数</span></td>
+						<td class="td_lable"><span class="lang">逻辑打开次数</span></td>
 						<td id="dataSource_LogicConnectCount"></td>
 						<td class="lang">产生的逻辑连接建立总数</td>
 					</tr>
 					<tr>
-						<td class="td_lable"><span class="lang">逻辑连接关闭次数</span></td>
+						<td class="td_lable"><span class="lang">逻辑关闭次数</span></td>
 						<td id="dataSource_LogicCloseCount"></td>
 						<td class="lang">产生的逻辑连接关闭总数</td>
 					</tr>
 					<tr>
-						<td class="td_lable"><span class="lang">逻辑连接错误次数</span></td>
+						<td class="td_lable"><span class="lang">逻辑错误次数</span></td>
 						<td id="dataSource_LogicConnectErrorCount"></td>
 						<td class="lang">产生的逻辑连接出错总数</td>
 					</tr>
 					<tr>
-						<td class="td_lable"><span class="lang">物理连接打开次数</span></td>
+						<td class="td_lable"><span class="lang">物理打开次数</span></td>
 						<td id="dataSource_PhysicalConnectCount"></td>
 						<td class="lang">产生的物理连接建立总数</td>
 					</tr>
@@ -254,7 +254,7 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 						<td class="lang">产生的物理关闭总数</td>
 					</tr>
 					<tr>
-						<td class="td_lable"><span class="lang">物理连接错误次数</span></td>
+						<td class="td_lable"><span class="lang">物理错误次数</span></td>
 						<td id="dataSource_PhysicalConnectErrorCount"></td>
 						<td class="lang">产生的物理连接失败总数</td>
 					</tr>
@@ -509,7 +509,7 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 				}
 				$('#dataSourceId').val(con.Identity);
 			} else {
-				showMessage("调用druid api失败!")
+				Common.showMessage("调用druid api失败!")
 			}
 		}, 'json');
 	}
@@ -533,7 +533,7 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 									+ '</td></tr>');
 						});
 			} else {
-				showMessage("调用druid api失败!")
+				Common.showMessage("调用druid api失败!")
 			}
 		}, 'json');
 	}
@@ -565,7 +565,7 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 				$('#app_JdbcFetchRowCount').text(con.JdbcFetchRowCount);
 				$('#app_JdbcUpdateCount').text(con.JdbcUpdateCount);
 			} else {
-				showMessage("调用druid api失败!")
+				Common.showMessage("调用druid api失败!")
 			}
 		}, 'json');
 	}
@@ -588,7 +588,7 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 									+ '</td><td>[' + item.Histogram + ']</td></tr>');
 						});
 			} else {
-				showMessage("调用druid api失败!")
+				Common.showMessage("调用druid api失败!")
 			}
 		}, 'json');
 	}
@@ -611,7 +611,7 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 									+ item.JdbcRollbackCount + '</td><td>' + item.JdbcFetchRowCount + '</td><td>' + item.JdbcUpdateCount + '</td></tr>');
 						});
 			} else {
-				showMessage("调用druid api失败!")
+				Common.showMessage("调用druid api失败!")
 			}
 		}, 'json');
 	}
@@ -635,7 +635,7 @@ layout("/layout/default.html",{"menu":["apm","db"],"breadcrumbs":[{"name":"数�
 				});
 				$('#StartTime').text(data.Content.StartTime);
 			} else {
-				showMessage("调用druid api失败!")
+				Common.showMessage("调用druid api失败!")
 			}
 		}, 'json');
 	}

@@ -76,23 +76,23 @@ layout("/layout/default.html",{"menu":["acl","user_admin"],"breadcrumbs":[{"name
 		$("input[name='status']").val($("input[name='statusSwitch']")[0].checked ? "ACTIVED" : "DISABLED");//将开关状态刷回表单进行提交
 		if ($('#addUserForm').find('input').validation()) {//验证表单
 			if ($('#id').val()) {
-				$.post(getRootPath() + '/user/edit', $('#addUserForm').serialize(), function(result) {
+				$.post(Common.getRootPath() + '/user/edit', $('#addUserForm').serialize(), function(result) {
 					if (result.operationState == 'SUCCESS') {
-						location.href = getRootPath() + "/user/list";
+						location.href = Common.getRootPath() + "/user/list";
 					} else {
-						validationFail(result.data.reason, btn);
+						Common.validationFail(result.data.reason, btn);
 					}
 				}, 'json');
 			} else if ($("input[name='password']").val() === $("input[name='rePassword']").val()) {
-				$.post(getRootPath() + '/user/add', $('#addUserForm').serialize(), function(result) {
+				$.post(Common.getRootPath() + '/user/add', $('#addUserForm').serialize(), function(result) {
 					if (result.operationState == 'SUCCESS') {
 						location.href = getRootPath() + "/user/list";
 					} else {
-						validationFail(result.data.reason, btn);
+						Common.validationFail(result.data.reason, btn);
 					}
 				}, 'json');
 			} else {
-				validationFail("两次输入的密码不一致", $("input[name='rePassword']"));
+				Common.validationFail("两次输入的密码不一致", $("input[name='rePassword']"));
 			}
 		}
 	}
