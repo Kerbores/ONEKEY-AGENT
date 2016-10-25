@@ -1,9 +1,12 @@
 <!--# 
 layout("/layout/default.html",{"menu":["acl","role_admin"],"breadcrumbs":[{"name":"角色列表","url":"role/list"},{"name":obj.data.role == null ? "添加角色" : "编辑角色"}]}){ 
  #-->
+<link rel="stylesheet" href="${base!}/assets/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="${base!}/assets/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="${base!}/assets/kindeditor/lang/zh_CN.js"></script>
 <div class="space-4"></div>
 <div class="row">
-	<div class="col-md-8 col-md-offset-2 col-sm-12">
+	<div class="col-md-9 col-md-offset-2 col-sm-12">
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<h3 class="panel-title">${obj.data.role == null ? "添加角色" : "编辑角色"}</h3>
@@ -40,10 +43,28 @@ layout("/layout/default.html",{"menu":["acl","role_admin"],"breadcrumbs":[{"name
 <script type="text/javascript">
 	var editor;
 	$(function() {
+
+		KindEditor.lang({
+			preview : '预览'
+		});
+		KindEditor.plugin('preview', function(K) {
+			var self = this,
+				name = 'preview';
+			self.clickToolbar(name, function() {
+				layer.open({
+					title : '内容预览',
+					type : 1,
+					skin : 'layui-layer-rim',
+					area : [ '540px', '700px' ],
+					content : self.html()
+				});
+			});
+		});
+
 		//kindeditor 初始化
 		KindEditor.ready(function(K) {
 			editor = K.create('textarea[name="content"]', {
-				uploadJson : getRootPath() + '/kind/upload'
+				uploadJson : Common.getRootPath() + '/kind/upload'
 			});
 		})
 	});
@@ -51,19 +72,19 @@ layout("/layout/default.html",{"menu":["acl","role_admin"],"breadcrumbs":[{"name
 		$('#description').val(editor.html());
 		if ($('input').validation()) {
 			if ($('#id').val() > 0) {
-				$.post(getRootPath() + '/role/update', $('#addRoleForm').serialize(), function(result) {
+				$.post(Common.getRootPath() + '/role/update', $('#addRoleForm').serialize(), function(result) {
 					if (result.operationState == "SUCCESS") {
-						location.href = getRootPath() + "/role/list";
+						location.href = Common.getRootPath() + "/role/list";
 					} else {
-						validationFail(result.data.reason, dom);
+						Common.validationFail(result.data.reason, dom);
 					}
 				}, 'json');
 			} else {
-				$.post(getRootPath() + '/role/add', $('#addRoleForm').serialize(), function(result) {
+				$.post(Common.getRootPath() + '/role/add', $('#addRoleForm').serialize(), function(result) {
 					if (result.operationState == "SUCCESS") {
-						location.href = getRootPath() + "/role/list";
+						location.href = Common.getRootPath() + "/role/list";
 					} else {
-						validationFail(result.data.reason, dom);
+						Common.validationFail(result.data.reason, dom);
 					}
 				}, 'json');
 			}

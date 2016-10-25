@@ -34,20 +34,20 @@ layout("/layout/default.html",{"menu":["acl","role_admin"],"breadcrumbs":[{"name
 		</div>
 	</div>
 </div>
-<script src="${base!}/resources/ace/js/jquery.bootstrap-duallistbox.js"></script>
+<script src="${base!}/assets/addon/jquery.bootstrap-duallistbox.js"></script>
 <script>
 	$(function($) {
 		$('select[name="permissions"]').bootstrapDualListbox({
 			selectedListLabel : '已选权限',
 			nonSelectedListLabel : '未选权限'
-		}).bootstrapDualListbox('getContainer').find('.btn').addClass('btn-white btn-info btn-bold');
+		}).bootstrapDualListbox('getContainer').find('.btn').addClass('btn-white btn-info btn-sm');
 	});
 	function setPermission(dom) {
-		$.post(getRootPath() + '/role/grant', $('#setPermissionForm').serialize(), function(result) {
+		$.post(Common.getRootPath() + '/role/grant', $('#setPermissionForm').serialize(), function(result) {
 			if (result.operationState == "SUCCESS") {
-				location.href = getRootPath() + "/role/list";
+				location.href = Common.getRootPath() + "/role/list";
 			} else {
-				validationFail(result.data.reason, dom);
+				Common.validationFail(result.data.reason, dom);
 			}
 		}, 'json');
 	}
