@@ -54,8 +54,8 @@ layout("/layout/default.html",{"menu":["acl","user_admin"],"breadcrumbs":[{"name
 					<div class="form-group ">
 						<label class="control-label col-lg-3"> 用户状态 : </label>
 						<div class="col-lg-9">
-							<input type="hidden" name="status" value="${obj.data.user.status!}"> <label> <input name="statusSwitch" class="ace ace-switch ace-switch-4 btn-flat"
-								type="checkbox" ${obj.data.user.status! == "ACTIVED" ? "checked":""} /> <span class="lbl"></span></label>
+							<input type="hidden" name="status" value="${obj.data.user.status!}"> <input type="checkbox" name="statusSwitch" class="make-switch"
+								data-on-text="&nbsp;Enabled&nbsp;&nbsp;" data-off-text="&nbsp;Disabled&nbsp;" ${obj.data.user.status! == "ACTIVED" ? "checked":""}  />
 						</div>
 					</div>
 					<div class="pull-right" style="margin-right: 45px">
@@ -73,8 +73,8 @@ layout("/layout/default.html",{"menu":["acl","user_admin"],"breadcrumbs":[{"name
 </div>
 <script type="text/javascript">
 	function save(btn) {
-		$("input[name='status']").val($("input[name='statusSwitch']")[0].checked ? "ACTIVED" : "DISABLED");//将开关状态刷回表单进行提交
-		if ($('#addUserForm').find('input').validation()) {//验证表单
+		$("input[name='status']").val($("input[name='statusSwitch']")[0].checked ? "ACTIVED" : "DISABLED"); //将开关状态刷回表单进行提交
+		if ($('#addUserForm').find('input').validation()) { //验证表单
 			if ($('#id').val()) {
 				$.post(Common.getRootPath() + '/user/edit', $('#addUserForm').serialize(), function(result) {
 					if (result.operationState == 'SUCCESS') {

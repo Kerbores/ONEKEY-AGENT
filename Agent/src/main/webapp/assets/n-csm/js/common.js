@@ -38,15 +38,17 @@ var Common = {
 }
 
 $(function() {
-	$(document).on('click', '.search-btn', function() { //搜索
-		if ($('.search-form').find('input').validation(function(status, dom, errorMsg, defaultValue) {
+	$('.search-btn').on('click', function() {
+		if ($('.search-form').find('input').validation(function(status, dom, errorMsg, defaultValue) { // 此处覆盖一下默认的回调,让tips框框到后面的搜索按钮上面去
 				status ? $.noop() : function() {
 					Common.validationFail(errorMsg, $(dom).next()[0]);
 				}.call();
 			})) {
 			$('.search-form').submit();
 		}
-	}).on('click', '.btn-pop', function() { //pop弹出
+	});
+	// 添加弹窗按钮的功能通用实现
+	$('.btn-pop').on('click', function() {
 		layer.open({
 			type : 2,
 			title : $(this).data('title'),
@@ -56,9 +58,13 @@ $(function() {
 			area : [ $(this).data('width') + 'px', $(this).data('height') + 'px' ],
 			content : Common.getRootPath() + $(this).data('url')
 		});
-	}).on('click', '.btn-back', function() { //返回按钮
+	});
+	// 返回按钮
+	$('.btn-back').on('click', function() {
 		history.go(-1);
-	}).on('click', '.btn-delete', function() { //删除按钮
+	});
+	// 删除按钮功能
+	$('.btn-delete').on('click', function() {
 		var url = $(this).data('url');
 		var id = $(this).data('id');
 		layer.confirm('确认删除这条数据 ?', {
@@ -77,9 +83,15 @@ $(function() {
 			}, 'json');
 
 		});
-	}).on('click', '.btn-dialog-undo', Common.closePopWindow()).on('click', '.pagination .disabled a', function() { //分页条按钮禁用
+	});
+	// 弹窗返回按钮
+	$('.btn-dialog-undo').on('click', function() {
+		Common.closePopWindow();
+	});
+	// 禁用分页条的disabled节点
+	$('.pagination .disabled a').on('click', function() {
 		return false;
-	})
+	});
 })
 
 Date.prototype.format = function(format) {
