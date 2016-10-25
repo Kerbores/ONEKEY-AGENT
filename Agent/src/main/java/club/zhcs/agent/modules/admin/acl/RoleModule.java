@@ -57,7 +57,7 @@ public class RoleModule extends AbstractBaseModule {
 	@Ok("beetl:pages/admin/auth/role/add_edit.html")
 	@ThunderRequiresPermissions(InstallPermission.ROLE_ADD)
 	public Result add() {
-		return Result.success();
+		return Result.success().setTitle("添加角色");
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class RoleModule extends AbstractBaseModule {
 	@ThunderRequiresPermissions(InstallPermission.ROLE_EDIT)
 	public Result edit(int id) {
 		Role role = roleService.fetch(id);
-		return Result.success().addData("role", role);
+		return Result.success().addData("role", role).setTitle("编辑角色");
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class RoleModule extends AbstractBaseModule {
 	@ThunderRequiresPermissions(InstallPermission.ROLE_GRANT)
 	public Result grant(int id) {
 		List<Record> records = roleService.findPermissionsWithRolePowerdInfoByRoleId(id);
-		return Result.success().addData("records", records).addData("roleId", id);
+		return Result.success().addData("records", records).addData("roleId", id).setTitle("角色授权");
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class RoleModule extends AbstractBaseModule {
 		page = _fixPage(page);
 		Pager<Role> pager = roleService.searchByPage(page);
 		pager.setUrl(_base() + "/role/list");
-		return Result.success().addData("pager", pager);
+		return Result.success().addData("pager", pager).setTitle("角色列表");
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class RoleModule extends AbstractBaseModule {
 		Pager<Role> pager = roleService.searchByKeyAndPage(key, page, "name", "description");
 		pager.setUrl(_base() + "/role/search");
 		pager.addParas("key", key);
-		return Result.success().addData("pager", pager);
+		return Result.success().addData("pager", pager).setTitle("角色检索");
 	}
 
 	/**

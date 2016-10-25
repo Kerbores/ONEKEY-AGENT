@@ -76,7 +76,7 @@ public class PermissionModule extends AbstractBaseModule {
 		Pager<Permission> pager = permissionService.searchByKeyAndPage(key, page, "name", "description");
 		pager.setUrl(_base() + "/permission/search");
 		pager.addParas("key", key);
-		return Result.success().addData("pager", pager).addData("key", key);
+		return Result.success().addData("pager", pager).addData("key", key).setTitle("权限检索");
 	}
 
 }

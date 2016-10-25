@@ -60,7 +60,7 @@ public class UserModule extends AbstractBaseModule {
 	@Ok("beetl:pages/admin/auth/user/add_edit.html")
 	@ThunderRequiresPermissions(InstallPermission.USER_ADD)
 	public Result add() {
-		return Result.success();
+		return Result.success().setTitle("添加用户");
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class UserModule extends AbstractBaseModule {
 	@Ok("beetl:pages/admin/auth/user/detail.html")
 	@ThunderRequiresPermissions(InstallPermission.USER_DETAIL)
 	public Result detail(int id) {
-		return Result.success().addData("user", userService.fetch(id));
+		return Result.success().addData("user", userService.fetch(id)).setTitle("用户详情");
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class UserModule extends AbstractBaseModule {
 	@Ok("beetl:pages/admin/auth/user/add_edit.html")
 	@ThunderRequiresPermissions(InstallPermission.USER_EDIT)
 	public Result edit(int id) {
-		return Result.success().addData("user", userService.fetch(id));
+		return Result.success().addData("user", userService.fetch(id)).setTitle("编辑用户");
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class UserModule extends AbstractBaseModule {
 	@ThunderRequiresPermissions(InstallPermission.USER_GRANT)
 	public Result grant(int id) {
 		List<Record> records = userService.findPermissionsWithUserPowerdInfoByUserId(id);
-		return Result.success().addData("records", records).addData("userId", id);
+		return Result.success().addData("records", records).addData("userId", id).setTitle("用户授权");
 	}
 
 	/**
@@ -179,7 +179,7 @@ public class UserModule extends AbstractBaseModule {
 		page = _fixPage(page);
 		Pager<User> pager = userService.searchByPage(page);
 		pager.setUrl(_base() + "/user/list");
-		return Result.success().addData("pager", pager);
+		return Result.success().addData("pager", pager).setTitle("用户列表");
 	}
 
 	/**
@@ -195,7 +195,7 @@ public class UserModule extends AbstractBaseModule {
 	@Ok("beetl:pages/admin/auth/user/role.html")
 	public Result role(int id) {
 		List<Record> records = userService.findRolesWithUserPowerdInfoByUserId(id);
-		return Result.success().addData("records", records).addData("userId", id);
+		return Result.success().addData("records", records).addData("userId", id).setTitle("用户角色");
 	}
 
 	/**
@@ -231,7 +231,7 @@ public class UserModule extends AbstractBaseModule {
 		Pager<User> pager = userService.searchByKeyAndPage(key, page, "name", "nickName", "realName");
 		pager.setUrl(_base() + "/user/search");
 		pager.addParas("key", key);
-		return Result.success().addData("pager", pager);
+		return Result.success().addData("pager", pager).setTitle("用户检索");
 	}
 
 }

@@ -42,7 +42,7 @@ public class DruidModule extends AbstractBaseModule {
 	@RequiresRoles("admin")
 	@Ok("beetl:pages/db/dashboard.html")
 	public Result dashboard() {
-		return Result.success();
+		return Result.success().setTitle("Druid 监控");
 	}
 
 	@At
