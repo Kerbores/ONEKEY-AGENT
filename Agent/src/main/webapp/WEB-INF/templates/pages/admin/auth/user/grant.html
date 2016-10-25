@@ -9,17 +9,18 @@ layout("/layout/default.html",{"menu":["acl","user_admin"],"breadcrumbs":[{"name
 				<h3 class="panel-title">角色授权</h3>
 			</div>
 			<div class="panel-body">
-				<div class="form-group">
-					<div class="col-sm-12">
-						<form id="setPermissionForm">
+				<div class="col-sm-12">
+					<form id="setPermissionForm">
+						<div class="form-group">
 							<select multiple="multiple" size="10" name="permissions" id="duallist">
-							<!--# 
+								<!--# 
 								for(record in obj.data.records){
 								#-->
-								 <option value="${record.id!}" ${record.has_permission!}>${record.p_name!} ${record.p_desc!}</option> 
-								<!--# } #--> 
+								<option value="${record.id!}"${record.has_permission!}>${record.p_name!} ${record.p_desc!}</option>
+								<!--# } #-->
 							</select>
-							<div class="hr hr-16 hr-dotted"></div>
+						</div>
+						<div class="form-group">
 							<div class="pull-right" style="margin-right: 45px">
 								<button type="button" class="btn btn-sm btn-primary" onclick="setPermission(this)">
 									<i class="fa fa-save"></i> 提交
@@ -29,27 +30,27 @@ layout("/layout/default.html",{"menu":["acl","user_admin"],"breadcrumbs":[{"name
 								</button>
 							</div>
 							<input type="hidden" name="id" value="${obj.data.userId!}">
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<script src="${base!}/resources/ace/js/jquery.bootstrap-duallistbox.js"></script>
+<script src="${base!}/assets/addon/jquery.bootstrap-duallistbox.js"></script>
 <script>
 	$(function($) {
 		$('select[name="permissions"]').bootstrapDualListbox({
 			selectedListLabel : '已选权限',
 			nonSelectedListLabel : '未选权限'
-		}).bootstrapDualListbox('getContainer').find('.btn').addClass('btn-white btn-info btn-bold');
+		}).bootstrapDualListbox('getContainer').find('.btn').addClass('btn-info btn-sm');
 	});
 	function setPermission(dom) {
-		$.post(getRootPath() + '/user/grant', $('#setPermissionForm').serialize(), function(result) {
+		$.post(Common.getRootPath() + '/user/grant', $('#setPermissionForm').serialize(), function(result) {
 			if (result.operationState == "SUCCESS") {
-				location.href = getRootPath() + "/user/list";
+				location.href = Common.getRootPath() + "/user/list";
 			} else {
-				validationFail(result.data.reason, dom);
+				Common.validationFail(result.data.reason, dom);
 			}
 		}, 'json');
 	}
