@@ -46,6 +46,7 @@ public class MainSetup implements Setup {
 
 	@Override
 	public void init(NutConfig nc) {
+		System.err.println(1);
 		PropertyConfigurator.configure("config/log4j.properties");
 		MainConfig conf = nc.getIoc().get(MainConfig.class, "conf");
 		nc.setAttribute("rs", conf.getAppRs());
