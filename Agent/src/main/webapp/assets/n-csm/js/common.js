@@ -5,6 +5,10 @@ var Common = {
 	init : function() {
 		console.log("common.js is runnning...");
 	},
+	logout:function(){
+		console.log('log out!');
+		location.href = Common.getRootPath() + '/system/logout'
+	},
 	getRootPath : function() {
 		return contextPath;
 	},
