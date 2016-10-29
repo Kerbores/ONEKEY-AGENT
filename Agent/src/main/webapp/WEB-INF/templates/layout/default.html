@@ -61,7 +61,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="page-header-inner ">
 			<!-- BEGIN LOGO -->
 			<div class="page-logo">
-				<a href="index.html"> <img src="${base}/assets/metronic/pages/img/login/logo.png" width="86" height="14" alt="logo" class="logo-default" />
+				<a href="#"> <img src="${base}/assets/metronic/pages/img/login/logo.png" width="86"  alt="logo" class="logo-default" />
 				</a>
 				<div class="menu-toggler sidebar-toggler"></div>
 			</div>
@@ -74,7 +74,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<ul class="nav navbar-nav pull-right">
 					<!-- BEGIN NOTIFICATION DROPDOWN -->
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-					<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+					<!--li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
 						data-hover="dropdown" data-close-others="true"> <i class="icon-bell"></i> <span class="badge badge-default"> 7 </span>
 					</a>
 						<ul class="dropdown-menu">
@@ -136,7 +136,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- END NOTIFICATION DROPDOWN -->
 					<!-- BEGIN INBOX DROPDOWN -->
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-					<li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+					<!--li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
 						data-close-others="true"> <i class="icon-envelope-open"></i> <span class="badge badge-default"> 4 </span>
 					</a>
 						<ul class="dropdown-menu">
@@ -173,7 +173,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- END INBOX DROPDOWN -->
 					<!-- BEGIN TODO DROPDOWN -->
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-					<li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+					<!--li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar"><a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
 						data-close-others="true"> <i class="icon-calendar"></i> <span class="badge badge-default"> 3 </span>
 					</a>
 						<ul class="dropdown-menu extended tasks">
@@ -255,7 +255,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- END USER LOGIN DROPDOWN -->
 					<!-- BEGIN QUICK SIDEBAR TOGGLER -->
 					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-					<li class="dropdown dropdown-quick-sidebar-toggler"><a href="javascript:;" class="dropdown-toggle"> <i class="icon-logout"></i>
+					<!--li class="dropdown dropdown-quick-sidebar-toggler"><a href="javascript:;" class="dropdown-toggle"> <i class="icon-logout"></i>
 					</a></li>
 					<!-- END QUICK SIDEBAR TOGGLER -->
 				</ul>
@@ -340,6 +340,17 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!--# } #-->
 							<!--# if(hasPermission('permission.list')){ #-->
 							<li class="nav-item  ${ menu[1] =='permission_admin' ?'active':''}"><a href="${base!}/permission/list" class="nav-link "><i class="fa fa-eye"></i>  <span class="title">权限管理</span>
+							</a></li>
+							<!--# } #-->
+						</ul></li>
+						
+						
+					<li class="nav-item  ${ menu[0] =='config' ?'active open':''}"><a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-cogs fa fa-cogs"></i> <span class="title">配置管理</span>
+							<span class="arrow"></span>
+					</a>
+						<ul class="sub-menu">
+							<!--# if(hasPermission('config.list')){ #-->
+							<li class="nav-item  ${ menu[1] =='config_admin' ?'active':''}"><a href="${base!}/config/list" class="nav-link "> <i class="fa fa-cogs"></i> <span class="title">配置管理</span>
 							</a></li>
 							<!--# } #-->
 						</ul></li>
