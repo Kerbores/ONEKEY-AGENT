@@ -79,6 +79,20 @@ public class MainSetup implements Setup {
 		ConfigService configService = ioc.get(ConfigService.class);
 
 		final PropertiesProxy p = ioc.get(PropertiesProxy.class, "config");
+		
+		Lang.each(p.toMap().keySet(), new Each<String>() {
+
+			@Override
+			public void invoke(int index, String key, int length) throws ExitLoop, ContinueLoop, LoopException {
+				if (configService.fetch(Cnd.where("name", "=", key)) == null) {//没有配置 添加
+					Config config = new Config();
+					config.setName(key);
+					config.setValue(p.get(key));
+					config.setInstalled(true);
+					configService.save(config);
+				}
+			}
+		});
 
 		Lang.each(configService.queryAll(), new Each<Config>() {
 

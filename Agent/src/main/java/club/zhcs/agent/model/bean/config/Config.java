@@ -34,7 +34,7 @@ public class Config extends Entity {
 
 	@Column("cfg_installed")
 	@Comment("是否内置标识")
-	private boolean installed = true;
+	private boolean installed = false;
 
 	/**
 	 * @return the description

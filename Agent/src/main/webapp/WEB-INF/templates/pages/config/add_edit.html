@@ -1,7 +1,9 @@
 <!--# 
-layout("/layout/default.html",{"menu":["settings","setting_list"],"breadcrumbs":[{"name":"配置列表",url:"setting/list"},{"name":(obj.data.key! == null?"添加配置":"编辑配置")}]}){ 
+layout("/layout/default.html",{"menu":["config","config_admin"],"breadcrumbs":[{"name":"配置列表",url:"config/list"},{"name":(obj.data.key! == null?"添加配置":"编辑配置")}]}){ 
  #-->
-<link rel="stylesheet" href="${base!}/resources/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="${base!}/assets/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="${base!}/assets/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="${base!}/assets/kindeditor/lang/zh_CN.js"></script>
 <div class="space-4"></div>
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 col-sm-12">
@@ -34,7 +36,7 @@ layout("/layout/default.html",{"menu":["settings","setting_list"],"breadcrumbs":
 						<button type="button" class="btn btn-sm btn-primary" onclick="save(this)">
 							<i class="fa fa-save"></i> 提交
 						</button>
-						<a href="${base}/setting/list" class="btn btn-sm btn-default"> <i class="fa fa-undo"></i> 返回
+						<a href="javascript:;" class="btn btn-sm btn-default btn-back"> <i class="fa fa-undo"></i> 返回
 						</a>
 					</div>
 				</form>
@@ -42,13 +44,11 @@ layout("/layout/default.html",{"menu":["settings","setting_list"],"breadcrumbs":
 		</div>
 	</div>
 </div>
-<script charset="utf-8" src="${base!}/resources/kindeditor/kindeditor-min.js"></script>
-<script charset="utf-8" src="${base!}/resources/kindeditor/lang/zh_CN.js"></script>
 <script type="text/javascript">
 	var editor;
 	KindEditor.ready(function(K) {
 		editor = K.create('textarea[name="description"]', {
-			uploadJson : getRootPath() + '/kind/upload'
+			uploadJson : Common.getRootPath() + '/kind/upload'
 		});
 	})
 
@@ -56,19 +56,19 @@ layout("/layout/default.html",{"menu":["settings","setting_list"],"breadcrumbs":
 		$('#description').val(editor.html());
 		if ($('#configForm').find('input').validation()) {//验证表单
 			if ($('#id').val()) {
-				$.post(getRootPath() + '/setting/edit', $('#configForm').serialize(), function(result) {
+				$.post(Common.getRootPath() + '/config/edit', $('#configForm').serialize(), function(result) {
 					if (result.operationState == 'SUCCESS') {
-						location.href = getRootPath() + "/setting/list";
+						location.href = Common.getRootPath() + "/config/list";
 					} else {
-						validationFail(result.data.reason, btn);
+						Common.validationFail(result.data.reason, btn);
 					}
 				}, 'json');
 			} else {
-				$.post(getRootPath() + '/setting/add', $('#configForm').serialize(), function(result) {
+				$.post(Common.getRootPath() + '/config/add', $('#configForm').serialize(), function(result) {
 					if (result.operationState == 'SUCCESS') {
-						location.href = getRootPath() + "/setting/list";
+						location.href = Common.getRootPath() + "/config/list";
 					} else {
-						validationFail(result.data.reason, btn);
+						Common.validationFail(result.data.reason, btn);
 					}
 				}, 'json');
 			}
