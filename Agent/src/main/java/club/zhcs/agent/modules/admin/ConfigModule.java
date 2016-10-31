@@ -14,6 +14,7 @@ import club.zhcs.agent.model.bean.config.Config;
 import club.zhcs.agent.model.biz.config.ConfigService;
 import club.zhcs.agent.model.vo.InstallPermission;
 import club.zhcs.titans.nutz.module.base.AbstractBaseModule;
+import club.zhcs.titans.utils.db.Pager;
 import club.zhcs.titans.utils.db.Result;
 
 /**
@@ -59,7 +60,6 @@ public class ConfigModule extends AbstractBaseModule {
 		return Result.success().setTitle("添加配置");
 	}
 
-
 	@At
 	@POST
 	@ThunderRequiresPermissions(InstallPermission.CONFIG_ADD)
@@ -95,7 +95,22 @@ public class ConfigModule extends AbstractBaseModule {
 	@Ok("beetl:pages/config/list.html")
 	@ThunderRequiresPermissions(InstallPermission.CONFIG_LIST)
 	public Result list(@Param(value = "page", df = "1") int page) {
-		return Result.success().addData("config", configService.queryAll()).setTitle("配置列表");
+		page = _fixPage(page);
+		Pager<Config> pager = configService.searchByPage(page);
+		pager.setUrl(_base() + "/config/list");
+		return Result.success().addData("pager", pager).setTitle("配置列表");
+	}
+
+	@At
+	@Ok("beetl:pages/config/list.html")
+	@ThunderRequiresPermissions(InstallPermission.CONFIG_LIST)
+	public Result search(@Param("key") String key, @Param(value = "page", df = "1") int page) {
+		page = _fixPage(page);
+		key = _fixSearchKey(key);
+		Pager<Config> pager = configService.searchByKeyAndPage(key, page, "name", "value", "description");
+		pager.setUrl(_base() + "/config/search");
+		pager.addParas("key", key);
+		return Result.success().addData("pager", pager).setTitle("配置检索");
 	}
 
 }

@@ -6,7 +6,16 @@ layout("/layout/default.html",{"menu":["config","config_admin"],"breadcrumbs":[{
 		<tr>
 			<th colspan="8">
 				<div class="row">
-					<div class="col-md-3 "></div>
+					<div class="col-md-3 ">
+						<form action="${base!}/config/search" method="post" class="search-form">
+							<div class="input-group">
+								<span class="input-group-addon"> 关键词 </span> <input class="form-control search-query" type="text" name="key" value="${obj.data.pager.paras.key!}" data-type="reg"
+									data-reg="/^[\u4e00-\u9fa5\d\w]{1,}$/" data-default="Search..." data-error="请输入搜索关键词" placeholder="请输入权限名检索"> <span class="input-group-addon  search-btn"
+									id="queryInfo" style="cursor: pointer;"> <i class="fa fa-search"></i> GO
+								</span>
+							</div>
+						</form>
+					</div>
 					<div class="col-md-2 col-md-offset-7">
 						<!--# if(hasPermission('config.add')){ #-->
 						<a href="${base}/config/add" class="btn btn-info btn-sm"><i class="fa fa-plus-circle"></i> 新增配置</a>
@@ -23,7 +32,7 @@ layout("/layout/default.html",{"menu":["config","config_admin"],"breadcrumbs":[{
 	</thead>
 
 	<tbody>
-		<!--# for(config in obj.data.config){ #-->
+		<!--# for(config in obj.data.pager.entities){ #-->
 		<tr>
 			<td>${config.name!}</td>
 			<td>${config.value!}</td>
@@ -40,5 +49,17 @@ layout("/layout/default.html",{"menu":["config","config_admin"],"breadcrumbs":[{
 		</tr>
 		<!--# } #-->
 	</tbody>
+	<tfoot>
+		<!--#if(obj.data.pager.count == 0){  #-->
+		<tr>
+			<td colspan="3" class="null-pager">没有符合条件的数据</td>
+		</tr>
+		<!--# }else{ #-->
+		<tr>
+			<td colspan="3">
+				<div class="pull-right">${obj.data.pager.pagerBar!}</div>
+			</td>
+		</tr>
+		<!--# }#-->
 </table>
 <!--# } #-->
