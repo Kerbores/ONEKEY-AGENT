@@ -122,17 +122,11 @@
 							</a></li>
 							<!--# } #-->
 						</ul></li>
-						
-						
-					<li class="nav-item  ${ menu[0] =='config' ?'active open':''}"><a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-cogs fa fa-cogs"></i> <span class="title">配置管理</span>
-							<span class="arrow"></span>
-					</a>
-						<ul class="sub-menu">
-							<!--# if(hasPermission('config.list')){ #-->
-							<li class="nav-item  ${ menu[1] =='config_admin' ?'active':''}"><a href="${base!}/config/list" class="nav-link "> <i class="fa fa-cogs"></i> <span class="title">配置管理</span>
-							</a></li>
-							<!--# } #-->
-						</ul></li>
+						<!--# if(hasPermission('config.list')){ #-->
+						<li class="nav-item ${ menu[0] =='config' ?'active open':''}"><a href="${base!}/config/list" class="nav-link nav-toggle"> <i class="icon-cogs fa fa-cogs"></i> <span
+							class="title">配置管理</span>
+					</a></li>
+					<!--# } #-->
 
 					<li class="nav-item  "><a href="javascript:;" class="nav-link nav-toggle"> <i class="icon-diamond"></i> <span class="title">UI Features</span> <span class="arrow"></span>
 					</a>
