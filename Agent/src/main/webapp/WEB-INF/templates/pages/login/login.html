@@ -53,10 +53,10 @@
 					<form action="javascript:;" class="login-form" method="post">
 						<div class="row">
 							<div class="col-xs-4">
-								<input class="form-control form-control-solid placeholder-no-fix" type="text" data-type="required" autocomplete="off" placeholder="请输入用户名" name="username" id="user" value="${loginInfo.user }"/>
+								<input class="form-control form-control-solid placeholder-no-fix" type="text" data-type="required" autocomplete="off" placeholder="请输入用户名" name="username" id="user" value="${loginInfo.user! }"/>
 							</div>
 							<div class="col-xs-4">
-								<input class="form-control form-control-solid placeholder-no-fix" data-type="password" type="password" autocomplete="off" placeholder="请输入密码" name="password" id="password" value="${loginInfo.password }"  />
+								<input class="form-control form-control-solid placeholder-no-fix" data-type="password" type="password" autocomplete="off" placeholder="请输入密码" name="password" id="password" value="${loginInfo.password! }"  />
 							</div>
 							<div class="col-xs-4 form-group ">
 								<div class="input-group">
@@ -73,7 +73,7 @@
 							<div class="col-sm-4">
 								<div class="rem-password">
 									<p>
-										记住我 <input type="checkbox" class="rem-checkbox" id="rememberMeCheckBox" ${loginInfo.rememberMe ? 'checked' : '' } />
+										记住我 <input type="checkbox" class="rem-checkbox" id="rememberMeCheckBox" ${null != loginInfo.rememberMe && loginInfo.rememberMe!  ? 'checked' : '' } />
 									</p>
 								</div>
 							</div>

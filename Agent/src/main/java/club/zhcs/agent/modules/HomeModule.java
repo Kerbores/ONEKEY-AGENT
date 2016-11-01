@@ -34,10 +34,11 @@ public class HomeModule extends BaseModule {
 			return ">>:/system/main";
 		}
 		String cookie = _getCookie("kerbores");
+		NutMap data = NutMap.NEW();
 		if (!Strings.isBlank(cookie)) {
-			NutMap data = Lang.map(DES.decrypt(cookie));
-			request.setAttribute("loginInfo", data);
+			data = Lang.map(DES.decrypt(cookie));
 		}
+		request.setAttribute("loginInfo", data);
 		return null;
 	}
 
