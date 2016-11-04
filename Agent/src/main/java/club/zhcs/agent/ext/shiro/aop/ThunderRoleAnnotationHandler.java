@@ -13,7 +13,6 @@ import org.nutz.lang.Lang;
 import org.nutz.lang.LoopException;
 
 import club.zhcs.agent.ext.shiro.anno.ThunderRequiresRoles;
-import club.zhcs.agent.model.vo.InstallPermission;
 import club.zhcs.agent.model.vo.InstalledRole;
 
 /**
@@ -40,10 +39,10 @@ public class ThunderRoleAnnotationHandler extends RoleAnnotationHandler {
 
 		final String[] roles = new String[roles_.length];
 
-		Lang.each(roles_, new Each<InstallPermission>() {
+		Lang.each(roles_, new Each<InstalledRole>() {
 
 			@Override
-			public void invoke(int index, InstallPermission ele, int length) throws ExitLoop, ContinueLoop, LoopException {
+			public void invoke(int index, InstalledRole ele, int length) throws ExitLoop, ContinueLoop, LoopException {
 				roles[index] = ele.getName();
 			}
 		});
